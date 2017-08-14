@@ -1,6 +1,6 @@
 // Example Album
 var albumPicasso = {
-    title: 'The Colors',
+  title: 'The Colors',
     artist: 'Pablo Picasso',
     label: 'Cubism',
     year: '1881',
