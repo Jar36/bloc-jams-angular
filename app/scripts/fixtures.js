@@ -1,5 +1,5 @@
-// Example Album
-var albumPicasso = {
+
+/*var albumPicasso = {
   title: 'The Colors',
     artist: 'Pablo Picasso',
     label: 'Cubism',
@@ -14,7 +14,7 @@ var albumPicasso = {
     ]
 };
 
-// Another Example Album
+
 var albumMarconi = {
     title: 'The Telephone',
     artist: 'Guglielmo Marconi',
@@ -29,3 +29,4 @@ var albumMarconi = {
         { title: 'Wrong phone number', duration: '2:15'}
     ]
 };
+*/
