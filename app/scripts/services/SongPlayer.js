@@ -1,18 +1,27 @@
 (function() {
   function SongPlayer() {
     var SongPlayer = {};
-    
+
     //Private Attribute
-    var currentSong = null;
 
     /**
     * @desc Buzz object audio file
     * @type {Object}
     */
+
+    var currentSong = null;
+
     //Private Attribute
+
+    /**
+    * @desc Buzz object audio file
+    * @type {Object}
+    */
+
     var currentBuzzObject = null;
 
     /* Private Function 1 */
+
     /**
     * @function setSong
     * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -33,21 +42,39 @@
       currentSong = song;
     };
 
-    /* ================ */
+    /* =============== */
+
+    /* Private Function 2 */
+
+    /**
+    * @function playSong
+    * @desc Plays currently clicked song and loads new audio file as currentBuzzObject
+    * @param {Object} song
+    */
+
+    var playSong = function(song){
+      if (currentBuzzObject) {
+        currentBuzzObject.play();
+        song.playing = true;
+      }
+
+    };
 
     /* Public Method 1 */
 
     SongPlayer.play = function(song) {
       if (currentSong !== song) {
         setSong(song);
-        currentBuzzObject.play();
-        song.playing = true;
+        playSong(song);
+        /*currentBuzzObject.play();
+        song.playing = true;*/
       }
 
       else if (currentSong === song) {
         if (currentBuzzObject.isPaused()) {
-         currentBuzzObject.play();
-         song.playing = true;
+          playSong(song);
+         /*currentBuzzObject.play();
+         song.playing = true;*/
         }
       }
     };
