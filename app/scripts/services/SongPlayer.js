@@ -2,19 +2,23 @@
   function SongPlayer(Fixtures) {
     var SongPlayer = {};
 
-    /**Private Attribute
+    /* / PRIVATE ATTRIBUTES / */
+
+    /**
     * @desc Copy of album template
     * @type {Object}
     */
     var currentAlbum = Fixtures.getAlbum();
 
-    /**Private Attribute
+    /**
     * @desc Buzz object audio file
     * @type {Object}
     */
     var currentBuzzObject = null;
 
-    /**Private Function 1
+    /* / PRIVATE FUNCTIONS / */
+
+    /**
     * @function setSong
     * @desc Stops currently playing song and loads new audio file as currentBuzzObject
     * @param {Object} song
@@ -33,7 +37,7 @@
       SongPlayer.currentSong = song;
     };
 
-    /**Private Function 2
+    /**
     * @function playSong
     * @desc Plays currently clicked song and loads new audio file as currentBuzzObject
     * @param {Object} song
@@ -46,7 +50,14 @@
 
     };
 
-    /**Private Function 3
+    var stopSong = function(song) {
+      if (currentBuzzObject) {
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+      }
+    };
+
+    /**
     * @function getSongIndex
     * @desc gets the index of a song in list of songs
     * @param {Object} song
@@ -55,13 +66,17 @@
       return currentAlbum.songs.indexOf(song);
     };
 
-    /**Public Attribute
+    /* / PUBLIC ATTRIBUTES / */
+
+    /**
     * @desc Active song from list of songs
     * @type {Object}
     */
     SongPlayer.currentSong = null;
 
-    /**Public Method 1
+    /* / PUBLIC METHODS / */
+
+    /**
     * @function play
     * @desc Plays currently clicked song and loads new audio file as currentBuzzObject
     * @param {Object} song
@@ -80,7 +95,7 @@
       }
     };
 
-    /**Public Method 2
+    /**
     * @function pause
     * @desc Pauses currently clicked song and stops audio file
     * @param {Object} song
@@ -91,7 +106,7 @@
       song.playing = false;
     };
 
-    /**Public Method 3
+    /**
     * @function previous
     * @desc uses getSongIndex and object to decrement the song checks if song is less than zero if it is then it will stop the currently playing audio file and sets currently playing song value to the first song.
     * @param {Object} SongPlayer.currentSong
@@ -101,8 +116,9 @@
       currentSongIndex--;
 
       if (currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(SongPlayer.currentSong);
+        /*currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;*/
       }
 
       else {
@@ -110,6 +126,29 @@
         setSong(song);
         playSong(song);
       }
+    };
+
+    /**
+    * @function next
+    * @desc uses getSongIndex and object to move to the song checks if song is less than zero if it is then it will stop the currently playing audio file and sets currently playing song value to the first song.
+    * @param {Object} SongPlayer.currentSong
+    */
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex++;
+
+      if (currentSongIndex < 0) {
+        stopSong(SongPlayer.currentSong);
+        /*currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;*/
+      }
+
+      else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+
     };
 
   return SongPlayer;
