@@ -86,6 +86,13 @@
     */
     SongPlayer.currentTime = null;
 
+    /**
+    * @desc Volume used for songs
+    * @type {Number}
+    */
+    SongPlayer.volume = 80;
+
+
     /* / PUBLIC METHODS / */
 
     /**
@@ -151,8 +158,7 @@
 
       if (currentSongIndex < 0) {
         stopSong(SongPlayer.currentSong);
-        /*currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;*/
+
       }
 
       else {
@@ -172,6 +178,18 @@
      if (currentBuzzObject) {
        currentBuzzObject.setTime(time);
      }
+    };
+
+    /**
+    * @function setVolume
+    * @desc Set volume for songs
+    * @param {Number} volume
+    */
+    SongPlayer.setVolume = function(volume) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(volume);
+      }
+    SongPlayer.volume = volume;
     };
 
 
